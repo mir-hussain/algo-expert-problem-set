@@ -26,21 +26,47 @@ const targetSum = 10;
 
 // solution 2 - using object O(n) time | O(n) space
 
-const twoNumberSum2 = (arr, target) => {
-  const obj = {};
+// const twoNumberSum2 = (arr, target) => {
+//   const obj = {};
 
-  for (let numb of arr) {
-    const reminder = target - numb;
+//   for (let numb of arr) {
+//     const reminder = target - numb;
 
-    if (!obj[reminder]) {
-      obj[numb] = true;
-    } else {
-      return [numb, reminder];
-    }
-  }
+//     if (!obj[reminder]) {
+//       obj[numb] = true;
+//     } else {
+//       return [numb, reminder];
+//     }
+//   }
 
-  return [];
-};
+//   return [];
+// };
 
-const pairs = twoNumberSum2(numberArray, targetSum);
-console.log(pairs);
+// const pairs = twoNumberSum2(numberArray, targetSum);
+// console.log(pairs);
+
+// solution 3 - using object O(nlogn) time | O(1) space
+
+// const twoNumberSum3 = (arr, target) => {
+//   let leftIndex = 0;
+//   let rightIndex = arr.length - 1;
+
+//   const sortedArr = arr.sort((a, b) => a - b);
+
+//   while (leftIndex < rightIndex) {
+//     const sum = sortedArr[leftIndex] + sortedArr[rightIndex];
+
+//     if (sum == target) {
+//       return [sortedArr[leftIndex], sortedArr[rightIndex]];
+//     } else if (sum < target) {
+//       leftIndex += 1;
+//     } else if (sum > target) {
+//       rightIndex -= 1;
+//     }
+//   }
+
+//   return [];
+// };
+
+// const pairs = twoNumberSum3(numberArray, targetSum);
+// console.log(pairs);
