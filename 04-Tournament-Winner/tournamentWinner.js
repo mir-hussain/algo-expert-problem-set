@@ -17,31 +17,24 @@ const tournamentWinner = (competition, results) => {
   let winner = "";
 
   for (let i = 0; i < competition.length; i++) {
-    if (results[i] == 0) {
-      const awayTeam = competition[i][1];
-      if (scores[awayTeam]) {
-        scores[awayTeam] += 3;
-      } else {
-        scores[awayTeam] = 3;
-      }
+    const [homeTeam, awayTeam] = competition[i];
 
-      if (scores[awayTeam] > scores[winner]) {
-        winner = awayTeam;
-      }
-    } else {
-      const homeTeam = competition[i][0];
-      if (scores[homeTeam]) {
-        scores[homeTeam] += 3;
-      } else {
-        scores[homeTeam] = 3;
-      }
-      if (scores[homeTeam] > scores[winner]) {
-        winner = homeTeam;
-      }
+    const roundWinner = results[i] === 1 ? homeTeam : awayTeam;
+    updateScore(roundWinner, scores);
+
+    if (scores[roundWinner] > scores[winner]) {
+      winner = roundWinner;
     }
   }
 
   return winner;
+};
+
+const updateScore = (team, scoreCard) => {
+  if (!scoreCard[team]) {
+    scoreCard[team] = 0;
+  }
+  scoreCard[team] += 3;
 };
 
 const result = tournamentWinner(competitions, results);
